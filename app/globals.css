@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Luxury gradient utilities */
+  .bg-gradient-luxury-1 {
+    background: var(--gradient-1);
+  }
+  .bg-gradient-luxury-2 {
+    background: var(--gradient-2);
+  }
+  .bg-gradient-luxury-3 {
+    background: var(--gradient-3);
+  }
+  .bg-gradient-luxury-4 {
+    background: var(--gradient-4);
+  }
+  .bg-gradient-luxury-5 {
+    background: var(--gradient-5);
+  }
+  .bg-gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  /* Luxury overlay utilities */
+  .overlay-luxury {
+    position: relative;
+  }
+  .overlay-luxury::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(127, 20, 22, 0.12) 0%, rgba(153, 27, 27, 0.1) 50%, rgba(185, 28, 28, 0.1) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .overlay-luxury-dark {
+    position: relative;
+  }
+  .overlay-luxury-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(69, 10, 10, 0.35) 0%, rgba(127, 20, 22, 0.3) 50%, rgba(153, 27, 27, 0.3) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Luxury shadow utilities */
+  .shadow-luxury {
+    box-shadow: 0 10px 40px rgba(127, 20, 22, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+  .shadow-luxury-lg {
+    box-shadow: 0 20px 60px rgba(127, 20, 22, 0.16), 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+  .shadow-luxury-xl {
+    box-shadow: 0 30px 80px rgba(127, 20, 22, 0.2), 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Luxury border utilities */
+  .border-luxury {
+    border: 1px solid rgba(185, 28, 28, 0.15);
+  }
+  .border-luxury-2 {
+    border: 2px solid rgba(185, 28, 28, 0.25);
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 10% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 10% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 10% 12%;
+    --primary: 0 72% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 40% 97%;
+    --secondary-foreground: 0 65% 28%;
+    --muted: 0 15% 96%;
+    --muted-foreground: 0 6% 42%;
+    --accent: 355 68% 30%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 20% 90%;
+    --input: 0 20% 90%;
+    --ring: 0 72% 40%;
+    --chart-1: 0 72% 40%;
+    --chart-2: 355 68% 30%;
+    --chart-3: 6 60% 50%;
+    --chart-4: 0 30% 65%;
+    --chart-5: 0 10% 35%;
+    --radius: 0.75rem;
+
+    /* Theme color - Change this one value to update entire website */
+    --theme-color: #b91c1c;
+
+    /* Luxury gradient colors - red & white identity, auto-generated from theme color */
+    --gradient-1: linear-gradient(135deg, #7f1416 0%, #b91c1c 55%, #dc2626 100%);
+    --gradient-2: linear-gradient(135deg, #991b1b 0%, #b91c1c 55%, #7f1416 100%);
+    --gradient-3: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #7f1416 100%);
+    --gradient-4: linear-gradient(135deg, #fff5f5 0%, #fee2e2 55%, #fecaca 100%);
+    --gradient-5: linear-gradient(135deg, #2c0a0a 0%, #5c1113 55%, #7f1416 100%);
+    --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
