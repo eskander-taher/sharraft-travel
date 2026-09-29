@@ -13,8 +13,6 @@ const navLinks = [
   { label: "الفعاليات", href: "/activities" },
   { label: "خدماتنا", href: "/services" },
   { label: "الفنادق", href: "/hotels" },
-  { label: "البرامج السياحية", href: "/tour-programs" },
-  { label: "السياحة الروسية", href: "/russian-tourism" },
   { label: "معلومات عنا", href: "/about" },
   { label: "تواصل معنا", href: "/contact" },
 ];

@@ -184,12 +184,6 @@ export default function HotelsPage() {
               >
                 احجز إقامتك الآن
               </Link>
-              <Link 
-                href="/russian-tourism" 
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition-all duration-300"
-              >
-                المزيد من المعلومات
-              </Link>
             </div>
           </div>
         </div>
@@ -362,12 +356,6 @@ export default function HotelsPage() {
               className="bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-luxury hover:scale-105"
             >
               استشارة مجانية
-            </Link>
-            <Link 
-              href="/tour-programs" 
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-700 transition-all duration-300"
-            >
-              عرض البرامج السياحية
             </Link>
           </div>
         </div>

@@ -82,8 +82,6 @@ export default function Footer() {
               <Link href="/activities" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفعاليات"}</Link>
               <Link href="/services" className="hover:text-white transition-all duration-300 hover:scale-105">{"خدماتنا"}</Link>
               <Link href="/hotels" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفنادق"}</Link>
-              <Link href="/tour-programs" className="hover:text-white transition-all duration-300 hover:scale-105">{"البرامج السياحية"}</Link>
-              <Link href="/russian-tourism" className="hover:text-white transition-all duration-300 hover:scale-105">{"السياحة الروسية"}</Link>
               <Link href="/about" className="hover:text-white transition-all duration-300 hover:scale-105">{"معلومات عنا"}</Link>
               <Link href="/contact" className="hover:text-white transition-all duration-300 hover:scale-105">{"تواصل معنا"}</Link>
               <Link href="/privacy" className="hover:text-white transition-all duration-300 hover:scale-105">{"سياسة الخصوصية"}</Link>

@@ -11,7 +11,7 @@ export default function PackagesBanner() {
 					{"بكجات سياحية لروسيا بأسعار خاصة"}
 				</h2>
 				<Link
-					href="/tour-programs"
+					href="/contact"
 					className="inline-block bg-primary-foreground text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-foreground/90 transition"
 				>
 					اكتشف البكجات
