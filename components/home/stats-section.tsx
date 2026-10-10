@@ -4,10 +4,10 @@ import Image from "next/image";
 import { Shield, Award, Briefcase, Users } from "lucide-react";
 
 const stats = [
-  { icon: Shield, label: "شركة موثوقة | Надежная компания", value: "100%" },
-  { icon: Award, label: "خدمات متكاملة | Полный спектр услуг", value: "11+" },
-  { icon: Briefcase, label: "دعم على مدار الساعة | Круглосуточная поддержка", value: "24/7" },
-  { icon: Users, label: "تواصل بالعربية | Общение на арабском", value: "100%" },
+  { icon: Shield, label: "شركة موثوقة", value: "100%" },
+  { icon: Award, label: "خدمات متكاملة", value: "11+" },
+  { icon: Briefcase, label: "دعم على مدار الساعة", value: "24/7" },
+  { icon: Users, label: "تواصل بالعربية", value: "100%" },
 ];
 
 export default function StatsSection() {

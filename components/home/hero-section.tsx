@@ -23,11 +23,8 @@ export default function HeroSection() {
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight text-balance">
           {"اكتشف جمال روسيا مع شرف"}
         </h1>
-        <p className="text-lg md:text-xl text-primary-foreground/90 mb-4">
+        <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
           {"رحلات سياحية لا تُنسى في أجمل المدن الروسية"}
-        </p>
-        <p className="text-sm md:text-base text-primary-foreground/70 mb-8">
-          {"Откройте красоту России с Шарраф | Незабываемые туристические поездки по красивейшим городам России"}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link

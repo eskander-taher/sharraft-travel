@@ -5,6 +5,7 @@ import HeroSection from "@/components/home/hero-section";
 import CompanyTitleSection from "@/components/home/company-title-section";
 import PackagesBanner from "@/components/home/packages-banner";
 import ServicesGrid from "@/components/home/services-grid";
+import CitiesSection from "@/components/home/cities-section";
 import ActivitiesCarousel from "@/components/home/activities-carousel";
 import StatsSection from "@/components/home/stats-section";
 import AboutSection from "@/components/home/about-section";
@@ -17,6 +18,7 @@ export default function Page() {
     <main>
       <Navbar />
       <HeroSection />
+      <CitiesSection />
       <ServicesGrid />
       <PackagesBanner />
       <ActivitiesCarousel />

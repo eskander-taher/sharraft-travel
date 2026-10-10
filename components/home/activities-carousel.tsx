@@ -31,7 +31,7 @@ export default function ActivitiesCarousel() {
           {"استكشف أنشطتنا السياحية"}
         </h2>
         <p className="text-center text-accent-foreground/80 mb-10">
-          {"Наши туристические мероприятия | Исследуйте наши туристические мероприятия"}
+          {"أنشطة وجولات مختارة في أجمل معالم روسيا"}
         </p>
         <div className="relative">
           <button

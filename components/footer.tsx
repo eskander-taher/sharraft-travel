@@ -12,7 +12,6 @@ export default function Footer() {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-bold mb-5">{"تواصل معنا"}</h3>
-            <p className="text-sm text-white/70 mb-3">{"Свяжитесь с нами | Contact Us"}</p>
             <div className="flex flex-col gap-3 text-sm text-white/80">
               <a
                 href="tel:+79261038152"
@@ -79,9 +78,11 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-5">{"روابط سريعة"}</h3>
             <div className="flex flex-col gap-3 text-sm text-white/80">
               <Link href="/" className="hover:text-white transition-all duration-300 hover:scale-105">{"الرئيسية"}</Link>
+              <Link href="/cities" className="hover:text-white transition-all duration-300 hover:scale-105">{"الوجهات"}</Link>
               <Link href="/activities" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفعاليات"}</Link>
               <Link href="/services" className="hover:text-white transition-all duration-300 hover:scale-105">{"خدماتنا"}</Link>
               <Link href="/hotels" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفنادق"}</Link>
+              <Link href="/b2b" className="hover:text-white transition-all duration-300 hover:scale-105">{"للشركات (B2B)"}</Link>
               <Link href="/about" className="hover:text-white transition-all duration-300 hover:scale-105">{"معلومات عنا"}</Link>
               <Link href="/contact" className="hover:text-white transition-all duration-300 hover:scale-105">{"تواصل معنا"}</Link>
               <Link href="/privacy" className="hover:text-white transition-all duration-300 hover:scale-105">{"سياسة الخصوصية"}</Link>

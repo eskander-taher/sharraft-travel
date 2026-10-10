@@ -10,9 +10,11 @@ import { RiTiktokLine, RiInstagramLine, RiWhatsappLine, RiSnapchatLine } from "r
 
 const navLinks = [
   { label: "الرئيسية", href: "/" },
+  { label: "الوجهات", href: "/cities" },
   { label: "الفعاليات", href: "/activities" },
   { label: "خدماتنا", href: "/services" },
   { label: "الفنادق", href: "/hotels" },
+  { label: "للشركات", href: "/b2b" },
   { label: "معلومات عنا", href: "/about" },
   { label: "تواصل معنا", href: "/contact" },
 ];

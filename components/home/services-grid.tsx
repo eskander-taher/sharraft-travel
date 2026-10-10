@@ -16,7 +16,7 @@ export default function ServicesGrid() {
           {"بعض الخدمات التي نقدمها"}
         </h2>
         <p className="text-center text-muted-foreground mb-12">
-          {"Наши услуги | Услуги, которые мы предоставляем"}
+          {"خدمات متكاملة لرحلة مريحة إلى روسيا"}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
