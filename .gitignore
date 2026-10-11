@@ -1,5 +1,19 @@
-# dependencies
-/node_modules
+node_modules/
+.next/
+dist/
+build/
+out/
+.turbo/
+.vercel/
+coverage/
+*.tsbuildinfo
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+# Project-specific
 /.pnp
 .pnp.*
 .yarn/*
@@ -7,41 +21,15 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
-# testing
-/coverage
-
 # next.js
-/.next/
-/out/
-
-# production
-/build
-/dist
-
-# misc
-.DS_Store
 Thumbs.db
 *.pem
-
-# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
-
-# env files
-.env
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
 next-env.d.ts
-
 # editors
 .vscode/*
 !.vscode/extensions.json

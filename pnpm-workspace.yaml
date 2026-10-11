@@ -1,5 +1,7 @@
+# sharp ships prebuilt binaries; its install script is only a fallback.
 allowBuilds:
   sharp: false
+  unrs-resolver: false   # ESLint import resolver; ships prebuilt binaries
 overrides:
   '@types/react': 19.2.7
   '@types/react-dom': 19.2.3
