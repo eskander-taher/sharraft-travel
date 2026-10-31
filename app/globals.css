@@ -2,12 +2,464 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Tokens: warm Gulf paper, the logo's red, a night ink, and arctic ice at the top of the map ---------- */
+@layer base {
+  :root {
+    --background: 38 45% 95%;
+    --foreground: 20 25% 10%;
+    --card: 40 50% 98%;
+    --card-foreground: 20 25% 10%;
+    --popover: 40 50% 98%;
+    --popover-foreground: 20 25% 10%;
+    --primary: 357 80% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 40% 90%;
+    --secondary-foreground: 20 25% 12%;
+    --muted: 36 35% 92%;
+    --muted-foreground: 20 12% 32%;
+    --accent: 215 45% 13%;
+    --accent-foreground: 40 50% 96%;
+    --destructive: 0 84% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 32 25% 80%;
+    --input: 32 25% 72%;
+    --ring: 357 80% 38%;
+    --chart-1: 357 80% 38%;
+    --chart-2: 215 45% 13%;
+    --chart-3: 32 80% 50%;
+    --chart-4: 195 50% 60%;
+    --chart-5: 20 25% 30%;
+    --radius: 0.25rem;
+
+    --ink: 215 45% 9%;
+    --amber: 38 92% 62%;
+    --ice: 195 70% 85%;
+    --wa: 142 70% 49%;
+    --wa-ink: 150 80% 8%;
+
+    --theme-color: #b5121b;
+    --gradient-1: hsl(215 45% 9%);
+    --gradient-2: hsl(357 80% 38%);
+    --gradient-3: hsl(215 45% 13%);
+    --gradient-4: hsl(36 40% 90%);
+    --gradient-5: hsl(215 45% 9%);
+    --gradient-gold: hsl(38 92% 62%);
+
+    --bar-h: 0px;
+  }
+
+  @media (max-width: 1023.98px) {
+    :root {
+      --bar-h: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    /* Room for the docked contact bar, so it never sits on top of the last line of a page. */
+    padding-bottom: var(--bar-h);
+    line-height: 1.8;
+    letter-spacing: 0;
+  }
+
+  /* Arabic: never track letters apart (it breaks the joins); give ascenders and dots room to breathe. */
+  h1,
+  h2,
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), serif;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.32;
+  }
+
+  h3,
+  h4 {
+    line-height: 1.5;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* ---------- Pieces ---------- */
+@layer components {
+  /* WhatsApp's own green with dark ink: white on this green fails AA, dark passes at 9:1. */
+  .btn-wa {
+    background-color: hsl(var(--wa));
+    color: hsl(var(--wa-ink));
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .btn-wa:hover {
+    background-color: hsl(142 70% 56%);
+  }
+  .btn-wa:focus-visible {
+    outline-color: hsl(var(--foreground));
+    box-shadow: 0 0 0 2px #fff;
+  }
+
+  .site-nav {
+    background: hsl(var(--background));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+    white-space: nowrap;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0.65rem;
+    bottom: 0.2rem;
+    height: 2px;
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+  .nav-link[aria-current="page"] {
+    font-weight: 700;
+    color: hsl(var(--primary));
+  }
+
+  .social-dot {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--foreground));
+    border-radius: 999px;
+    transition: color 0.2s ease;
+  }
+  .social-dot:hover {
+    color: hsl(var(--primary));
+  }
+
+  .contact-bar {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    height: var(--bar-h);
+    padding: 0.5rem 0.75rem calc(0.5rem + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    gap: 0.5rem;
+    background: hsl(var(--ink));
+  }
+  .contact-bar-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+  .contact-bar-call {
+    flex: none;
+    width: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: #fff;
+    border: 1px solid rgb(255 255 255 / 0.35);
+  }
+
+  /* The doorway: a Gulf arch whose curve answers the onion domes at the other end of the trip. */
+  .arch-frame {
+    overflow: hidden;
+    border-radius: 50% 50% 0.25rem 0.25rem / 34% 34% 0.25rem 0.25rem;
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.5), 0 0 0 9px hsl(var(--background)), 0 0 0 10px hsl(var(--primary) / 0.35);
+  }
+
+  .page-hero {
+    padding: 6.5rem 0 3rem;
+    background: hsl(var(--background));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      padding: 8.5rem 0 4.5rem;
+    }
+  }
+
+  /* Hero stage */
+  .hero-stage {
+    position: relative;
+    background: hsl(var(--ink));
+  }
+  .hero-frame {
+    position: relative;
+    height: calc(100svh - var(--bar-h));
+    min-height: 34rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    padding: 4.5rem 1.25rem 1rem;
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Out of the grid flow; its <source> would otherwise take a row of its own. */
+  .hero-frame picture {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-copy {
+    grid-row: 1;
+  }
+  .hero-arch-slot {
+    grid-row: 2;
+  }
+  .hero-actions {
+    grid-row: 3;
+  }
+  .hero-arch-slot {
+    position: relative;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    margin-block: 0.75rem;
+  }
+  /* Fills the slot and fits the arch inside it, so the arch can never run into the text. */
+  .hero-wall {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transform-origin: 50% 58%;
+  }
+  .hero-copy,
+  .hero-actions {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-arrival {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    /* Wider than the screen and pushed left, so the cathedral stands inside the arch. */
+    .hero-frame picture {
+      overflow: hidden;
+    }
+    .hero-media {
+      inset: 0 auto 0 -35%;
+      width: 145%;
+      object-position: 50% 30%;
+    }
+    .hero-frame {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-rows: minmax(0, 1fr) auto;
+      column-gap: 3rem;
+      padding: 6.5rem max(2rem, calc((100vw - 80rem) / 2 + 1rem)) 2.5rem;
+    }
+    .hero-copy {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+    }
+    .hero-actions {
+      grid-column: 1;
+      grid-row: 2;
+      margin-top: 1.5rem;
+    }
+    .hero-arch-slot {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      margin: 0;
+    }
+  }
+
+  /* Departures board */
+  .board-row {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 0.25rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.16);
+    transition: background-color 0.2s ease, padding 0.2s ease;
+  }
+  .board-row:hover,
+  .board-row:focus-visible {
+    background: rgb(255 255 255 / 0.05);
+    padding-inline-start: 0.75rem;
+  }
+
+  /* City chapters: each new latitude slides up over the last one. */
+  .chapter {
+    position: sticky;
+    top: 0;
+    height: calc(100svh - var(--bar-h));
+    min-height: 30rem;
+    overflow: hidden;
+    color: #fff;
+    isolation: isolate;
+    /* Photos of far chapters do not compete with the first screen for the connection. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100svh;
+  }
+  .chapter-lat {
+    font-family: var(--font-display), serif;
+    line-height: 1;
+    font-size: clamp(7rem, 28vw, 19rem);
+    color: #fff;
+    text-shadow: 0 2px 30px rgb(0 0 0 / 0.45);
+  }
+
+  .defer-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 42rem;
+  }
+
+  .chapter-deg {
+    font-size: 0.4em;
+    position: relative;
+    top: -0.75em;
+    margin-inline-start: 0.08em;
+  }
+
+  /* Scrollable rails */
+  .rail {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1rem));
+    padding-bottom: 0.5rem;
+    overscroll-behavior-x: contain;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    scroll-snap-align: center;
+    flex: none;
+  }
+
+  /* Boarding pass */
+  .pass {
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-radius: 0.75rem;
+    --notch: 14px;
+    box-shadow: 0 30px 70px rgb(0 0 0 / 0.35);
+  }
+  .pass-stub {
+    position: relative;
+    border-top: 2px dashed hsl(var(--border));
+  }
+  .pass-stub::before,
+  .pass-stub::after {
+    content: "";
+    position: absolute;
+    top: calc(var(--notch) * -1 - 1px);
+    width: calc(var(--notch) * 2);
+    height: calc(var(--notch) * 2);
+    border-radius: 50%;
+    background: hsl(var(--ink));
+  }
+  .pass-stub::before {
+    right: calc(var(--notch) * -1);
+  }
+  .pass-stub::after {
+    left: calc(var(--notch) * -1);
+  }
+  .pass-chip {
+    display: block;
+    cursor: pointer;
+  }
+  .pass-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .pass-chip span {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.35rem 1rem;
+    border: 1px solid hsl(var(--input));
+    border-radius: 999px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .pass-chip input:checked + span {
+    background: hsl(var(--ink));
+    border-color: hsl(var(--ink));
+    color: #fff;
+  }
+  .pass-chip input:focus-visible + span {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  .pass-barcode {
+    height: 3rem;
+    background: repeating-linear-gradient(
+      90deg,
+      hsl(var(--ink)) 0 2px,
+      transparent 2px 5px,
+      hsl(var(--ink)) 5px 6px,
+      transparent 6px 9px,
+      hsl(var(--ink)) 9px 13px,
+      transparent 13px 15px
+    );
+  }
+
+  /* Latitude instrument: wide screens only, in the empty margin. */
+  .lat-rail {
+    display: none;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Luxury gradient utilities */
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .font-display {
+    font-family: var(--font-display), var(--font-sans), serif;
+  }
+  /* Names kept so existing pages keep working; they now point at the new palette. */
   .bg-gradient-luxury-1 {
     background: var(--gradient-1);
   }
@@ -26,101 +478,212 @@
   .bg-gradient-gold {
     background: var(--gradient-gold);
   }
-
-  /* Luxury overlay utilities */
-  .overlay-luxury {
-    position: relative;
-  }
-  .overlay-luxury::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(127, 20, 22, 0.12) 0%, rgba(153, 27, 27, 0.1) 50%, rgba(185, 28, 28, 0.1) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
+  .overlay-luxury,
   .overlay-luxury-dark {
     position: relative;
   }
-  .overlay-luxury-dark::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(69, 10, 10, 0.35) 0%, rgba(127, 20, 22, 0.3) 50%, rgba(153, 27, 27, 0.3) 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Luxury shadow utilities */
-  .shadow-luxury {
-    box-shadow: 0 10px 40px rgba(127, 20, 22, 0.12), 0 4px 20px rgba(0, 0, 0, 0.06);
-  }
-  .shadow-luxury-lg {
-    box-shadow: 0 20px 60px rgba(127, 20, 22, 0.16), 0 8px 30px rgba(0, 0, 0, 0.08);
-  }
+  .shadow-luxury,
+  .shadow-luxury-lg,
   .shadow-luxury-xl {
-    box-shadow: 0 30px 80px rgba(127, 20, 22, 0.2), 0 12px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 16px 40px rgb(10 18 30 / 0.16);
   }
-
-  /* Luxury border utilities */
   .border-luxury {
-    border: 1px solid rgba(185, 28, 28, 0.15);
+    border: 1px solid hsl(var(--border));
   }
   .border-luxury-2 {
-    border: 2px solid rgba(185, 28, 28, 0.25);
+    border: 2px solid hsl(var(--border));
   }
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 10% 12%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 10% 12%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 10% 12%;
-    --primary: 0 72% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 40% 97%;
-    --secondary-foreground: 0 65% 28%;
-    --muted: 0 15% 96%;
-    --muted-foreground: 0 6% 42%;
-    --accent: 355 68% 30%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 45%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 20% 90%;
-    --input: 0 20% 90%;
-    --ring: 0 72% 40%;
-    --chart-1: 0 72% 40%;
-    --chart-2: 355 68% 30%;
-    --chart-3: 6 60% 50%;
-    --chart-4: 0 30% 65%;
-    --chart-5: 0 10% 35%;
-    --radius: 0.75rem;
-
-    /* Theme color - Change this one value to update entire website */
-    --theme-color: #b91c1c;
-
-    /* Luxury gradient colors - red & white identity, auto-generated from theme color */
-    --gradient-1: linear-gradient(135deg, #7f1416 0%, #b91c1c 55%, #dc2626 100%);
-    --gradient-2: linear-gradient(135deg, #991b1b 0%, #b91c1c 55%, #7f1416 100%);
-    --gradient-3: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #7f1416 100%);
-    --gradient-4: linear-gradient(135deg, #fff5f5 0%, #fee2e2 55%, #fecaca 100%);
-    --gradient-5: linear-gradient(135deg, #2c0a0a 0%, #5c1113 55%, #7f1416 100%);
-    --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+/* ---------- Motion. Everything below is an enhancement: the page is complete without it. ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .chapter {
+    position: relative;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@property --lat {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 25;
+}
+
+@keyframes wall-open {
+  to {
+    transform: scale(9);
   }
-  body {
-    @apply bg-background text-foreground;
+}
+@keyframes hero-copy-leave {
+  to {
+    opacity: 0;
+    transform: translateY(-2.5rem);
+  }
+}
+@keyframes hero-arrival-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0.15;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes drift {
+  from {
+    transform: scale(1.14);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* Stops line up with where each chapter sits on the page at wide widths. */
+@keyframes latitude {
+  0% {
+    --lat: 25;
+  }
+  30% {
+    --lat: 44;
+  }
+  41% {
+    --lat: 56;
+  }
+  52% {
+    --lat: 60;
+  }
+  63%,
+  100% {
+    --lat: 69;
+  }
+}
+@keyframes lat-plane {
+  0% {
+    top: 100%;
+  }
+  63%,
+  100% {
+    top: 0%;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .hero-stage {
+      height: calc(170svh - var(--bar-h));
+      view-timeline: --hero block;
+      /* "auto" would inherit scroll-padding-top and start the doorway half open. */
+      view-timeline-inset: 0;
+    }
+    .hero-frame {
+      position: sticky;
+      top: 0;
+    }
+    .hero-wall {
+      animation: wall-open linear both;
+      animation-timeline: --hero;
+      animation-range: contain 0% contain 62%;
+      will-change: transform;
+    }
+    .hero-copy,
+    .hero-actions {
+      animation: hero-copy-leave linear both;
+      animation-timeline: --hero;
+      animation-range: contain 0% contain 26%;
+    }
+    /* Keyboard users never land on a faded-out link. */
+    .hero-actions:has(:focus-visible) {
+      animation: none;
+    }
+    .hero-arrival {
+      display: block;
+      position: absolute;
+      inset-inline: 1.25rem;
+      bottom: 2.5rem;
+      z-index: 3;
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 6px rgb(0 0 0 / 0.75), 0 0 40px rgb(0 0 0 / 0.6);
+      animation: hero-arrival-in linear both;
+      animation-timeline: --hero;
+      animation-range: contain 55% contain 88%;
+    }
+
+    .rise {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+
+    .chapter-photo {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 60%;
+    }
+
+    @media (min-width: 1440px) {
+      .lat-rail {
+        display: block;
+        position: fixed;
+        top: 22vh;
+        bottom: 12vh;
+        right: 1.1rem;
+        width: 3rem;
+        z-index: 30;
+        pointer-events: none;
+        color: #fff;
+        mix-blend-mode: difference;
+        counter-reset: lat var(--lat);
+        animation: latitude linear both;
+        animation-timeline: scroll(root);
+      }
+      .lat-rail::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0.45rem;
+        border-inline-end: 1px dashed currentColor;
+      }
+      .lat-rail-mark {
+        position: absolute;
+        right: 0;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: currentColor;
+        transform: translateY(-50%);
+        animation: lat-plane linear both;
+        animation-timeline: scroll(root);
+      }
+      .lat-rail-mark::after {
+        content: counter(lat, arabic-indic) "°";
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+    }
+  }
 }

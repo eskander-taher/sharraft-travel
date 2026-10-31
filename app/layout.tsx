@@ -1,17 +1,42 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
-import { Cairo } from "next/font/google";
+import { Aref_Ruqaa, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import WhatsAppButton from "@/components/whatsapp-button";
+import { activities } from "@/lib/activities-data";
+import { cities } from "@/lib/cities-data";
+import { services } from "@/lib/services-data";
 
-const cairo = Cairo({
-  subsets: ["arabic", "latin"],
-  variable: "--font-cairo",
+const body = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
+const display = Aref_Ruqaa({
+  subsets: ["arabic"],
+  weight: ["700"],
+  variable: "--font-display",
+  preload: false,
+  display: "swap",
+});
+
+/** Page names for the contact button's prefilled message. */
+const contactLabels: Record<string, string> = Object.fromEntries([
+  ...cities.map((c) => [`/cities/${c.slug}`, c.name]),
+  ...activities.map((a) => [`/activities/${a.slug}`, a.title]),
+  ...services.map((s) => [`/services/${s.slug}`, s.title]),
+  ["/activities/kremlin", "الكرملين"],
+  ["/activities/red-square", "الساحة الحمراء"],
+  ["/activities/gorky-park", "حديقة غوركي"],
+  ["/activities/vdnkh", "فدنخا"],
+]);
+
 export const metadata: Metadata = {
+	metadataBase: new URL("https://www.sharraft-travel.com"),
 	title: {
 		default: "شرف للسفر والسياحة | Sharraf Travel & Tourism",
 		template: "%s | شرف للسفر والسياحة",
@@ -40,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#dc2626",
+  themeColor: "#f7f2e8",
   width: "device-width",
   initialScale: 1,
 };
@@ -51,11 +76,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={cairo.variable}>
+    <html lang="ar" dir="rtl" className={`${body.variable} ${display.variable}`}>
       <body className="font-sans antialiased">
         <Navbar />
         {children}
-        <WhatsAppButton />
+        <Footer />
+        <WhatsAppButton labels={contactLabels} />
       </body>
     </html>
   );

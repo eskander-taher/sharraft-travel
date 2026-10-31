@@ -1,123 +1,117 @@
-import React from "react"
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail } from "lucide-react";
 import { RiTiktokLine, RiInstagramLine, RiWhatsappLine, RiSnapchatLine, RiFacebookLine } from "react-icons/ri";
+import { DEFAULT_MESSAGE, WHATSAPP_URL, whatsappLink } from "@/lib/whatsapp";
+import WhatsAppIcon from "@/components/whatsapp-icon";
+
+const quickLinks = [
+  { href: "/", label: "الرئيسية" },
+  { href: "/cities", label: "الوجهات" },
+  { href: "/activities", label: "الفعاليات" },
+  { href: "/services", label: "خدماتنا" },
+  { href: "/hotels", label: "الفنادق" },
+  { href: "/b2b", label: "للشركات (B2B)" },
+  { href: "/about", label: "معلومات عنا" },
+  { href: "/contact", label: "تواصل معنا" },
+  { href: "/privacy", label: "سياسة الخصوصية" },
+  { href: "/terms", label: "شروط الخدمة" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-luxury-5 text-white relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
-          {/* Contact Info */}
+    <footer className="bg-[hsl(var(--ink))] text-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 lg:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr_1fr] gap-12">
           <div>
-            <h3 className="text-lg font-bold mb-5">{"تواصل معنا"}</h3>
-            <div className="flex flex-col gap-3 text-sm text-white/80">
-              <a
-                href="tel:+79261038152"
-                className="flex items-center gap-2 hover:text-white transition-all duration-300 hover:scale-105"
-              >
-                <Phone className="w-4 h-4 shrink-0" />
-                <span dir="ltr">{"+79261038152"}</span>
+            <p className="font-display text-3xl lg:text-4xl leading-snug mb-6 text-balance">
+              {"رحلتك إلى روسيا تبدأ برسالة واحدة"}
+            </p>
+            <a
+              href={whatsappLink(DEFAULT_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-wa inline-flex items-center gap-2 rounded-full px-7 py-3 font-bold"
+            >
+              <WhatsAppIcon />
+              {"اطلب برنامج رحلتك على واتساب"}
+            </a>
+          </div>
+
+          <div>
+            <h3 className="font-sans text-sm font-bold text-white/70 mb-4">{"تواصل معنا"}</h3>
+            <div className="flex flex-col gap-3 text-sm text-white/85">
+              <a href="tel:+79261038152" className="flex items-center gap-2 py-1 hover:text-white">
+                <Phone aria-hidden="true" className="w-4 h-4 shrink-0" />
+                <span dir="ltr">{"+7 926 103-81-52"}</span>
               </a>
-              <a
-                href="mailto:info@sharraftravels.com"
-                className="flex items-center gap-2 hover:text-white transition-all duration-300 hover:scale-105"
-              >
-                <Mail className="w-4 h-4 shrink-0" />
+              {/* Mailbox domain is unverified (see the redesign report): kept available, never promoted. */}
+              <a href="mailto:info@sharraftravels.com" className="flex items-center gap-2 py-1 text-white/70 hover:text-white">
+                <Mail aria-hidden="true" className="w-4 h-4 shrink-0" />
                 <span dir="ltr">{"info@sharraftravels.com"}</span>
               </a>
-              <a
-                href="mailto:booking@sharraftravels.com"
-                className="flex items-center gap-2 hover:text-white transition-all duration-300 hover:scale-105"
-              >
-                <Mail className="w-4 h-4 shrink-0" />
+              <a href="mailto:booking@sharraftravels.com" className="flex items-center gap-2 py-1 text-white/70 hover:text-white">
+                <Mail aria-hidden="true" className="w-4 h-4 shrink-0" />
                 <span dir="ltr">{"booking@sharraftravels.com"}</span>
               </a>
-              <p className="pt-2 text-white/60 text-xs leading-relaxed">
+              <p className="pt-2 text-white/70 text-xs leading-relaxed">
                 {"شارع الشيخ زايد، دبي، الإمارات العربية المتحدة"}
               </p>
-              <p className="text-white/50 text-xs">
-                {"الأحد - الخميس: 9ص - 6م | الجمعة - السبت: 10ص - 2م"}
-              </p>
+              <p className="text-white/70 text-xs">{"الأحد - الخميس: 9ص - 6م | الجمعة - السبت: 10ص - 2م"}</p>
             </div>
-          </div>
-
-          {/* Center Logo & Socials */}
-          <div className="flex flex-col items-center text-center">
-            <Link href="/" className="flex items-center justify-center mb-5 hover:scale-105 transition-all duration-300">
-              <Image
-                src="/logo_white.png"
-                alt="شرف للسفر والسياحة"
-                width={200}
-                height={120}
-                className="w-32 h-20 lg:w-44 lg:h-28 object-contain"
-              />
-            </Link>
-            <div className="flex items-center gap-3">
-              <FooterSocial href="https://wa.me/79261038152" label="WhatsApp">
-                <RiWhatsappLine className="w-4 h-4" />
+            <div className="flex flex-wrap items-center gap-2 mt-5">
+              <FooterSocial href={WHATSAPP_URL} label="WhatsApp">
+                <RiWhatsappLine aria-hidden="true" className="w-5 h-5" />
               </FooterSocial>
               <FooterSocial href="https://instagram.com/sharraft_travel" label="Instagram">
-                <RiInstagramLine className="w-4 h-4" />
+                <RiInstagramLine aria-hidden="true" className="w-5 h-5" />
               </FooterSocial>
               <FooterSocial href="https://tiktok.com/@sharraft_travel" label="TikTok">
-                <RiTiktokLine className="w-4 h-4" />
+                <RiTiktokLine aria-hidden="true" className="w-5 h-5" />
               </FooterSocial>
               <FooterSocial href="https://facebook.com/sharraft_travel" label="Facebook">
-                <RiFacebookLine className="w-4 h-4" />
+                <RiFacebookLine aria-hidden="true" className="w-5 h-5" />
               </FooterSocial>
               <FooterSocial href="https://snapchat.com/add/mr_sharaf99" label="Snapchat">
-                <RiSnapchatLine className="w-4 h-4" />
+                <RiSnapchatLine aria-hidden="true" className="w-5 h-5" />
               </FooterSocial>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="md:text-left">
-            <h3 className="text-lg font-bold mb-5">{"روابط سريعة"}</h3>
-            <div className="flex flex-col gap-3 text-sm text-white/80">
-              <Link href="/" className="hover:text-white transition-all duration-300 hover:scale-105">{"الرئيسية"}</Link>
-              <Link href="/cities" className="hover:text-white transition-all duration-300 hover:scale-105">{"الوجهات"}</Link>
-              <Link href="/activities" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفعاليات"}</Link>
-              <Link href="/services" className="hover:text-white transition-all duration-300 hover:scale-105">{"خدماتنا"}</Link>
-              <Link href="/hotels" className="hover:text-white transition-all duration-300 hover:scale-105">{"الفنادق"}</Link>
-              <Link href="/b2b" className="hover:text-white transition-all duration-300 hover:scale-105">{"للشركات (B2B)"}</Link>
-              <Link href="/about" className="hover:text-white transition-all duration-300 hover:scale-105">{"معلومات عنا"}</Link>
-              <Link href="/contact" className="hover:text-white transition-all duration-300 hover:scale-105">{"تواصل معنا"}</Link>
-              <Link href="/privacy" className="hover:text-white transition-all duration-300 hover:scale-105">{"سياسة الخصوصية"}</Link>
-              <Link href="/terms" className="hover:text-white transition-all duration-300 hover:scale-105">{"شروط الخدمة"}</Link>
+          <div>
+            <h3 className="font-sans text-sm font-bold text-white/70 mb-4">{"روابط سريعة"}</h3>
+            <div className="grid grid-cols-2 gap-x-6 text-sm text-white/85">
+              {quickLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="py-2 hover:text-white">
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-4 text-center text-xs text-white/60">
-          {"جميع الحقوق محفوظة"} &copy; {new Date().getFullYear()} شرف Travel & Tourism
+        <div className="mx-auto max-w-7xl px-4 py-5 flex items-center justify-between gap-4 text-xs text-white/70">
+          <span>
+            {"جميع الحقوق محفوظة"} &copy; {new Date().getFullYear()} {"شرف للسفر والسياحة"}
+          </span>
+          <Image src="/logo_white.png" alt="" width={84} height={50} className="w-16 h-auto" />
         </div>
       </div>
     </footer>
   );
 }
 
-function FooterSocial({
-  href,
-  label,
-  children,
-}: {
-  href: string;
-  label: string;
-  children: React.ReactNode;
-}) {
+function FooterSocial({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white/80 hover:bg-white/30 hover:text-white transition-all duration-300 hover:scale-110 border border-white/10"
+      className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/85 hover:border-white hover:text-white transition-colors"
     >
       {children}
     </a>
