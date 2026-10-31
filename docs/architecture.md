@@ -10,5 +10,7 @@ app/                 home (page.tsx + components/home/), about, services, cities
                      hotels, b2b, contact, privacy, terms; icons and manifest
 lib/cities-data.ts   cities → app/cities/[slug] pages
 lib/activities-data.ts, services-data.ts
-components/          navbar, footer, whatsapp-button, b2b-inquiry-form (→ WhatsApp), ui/
+lib/whatsapp.ts      contact messages; lib/journey.ts: latitude order of the cities
+components/          navbar, footer, whatsapp-button, page-hero, b2b-inquiry-form (→ WhatsApp), ui/
+components/home/     hero, departures board, city chapters, trip pass (→ WhatsApp), activities, about
 ```

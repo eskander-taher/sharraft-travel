@@ -33,6 +33,14 @@ pnpm dev          # http://localhost:3000
 - **B2B form**: `components/b2b-inquiry-form.tsx` — opens WhatsApp with the details.
 - Images: `public/`.
 
+## The design
+
+The site travels north: home runs from a Gulf arch opening onto Red Square, through the cities
+in order of real latitude (`lib/journey.ts`). Motion is CSS only (`app/globals.css`) and is an
+enhancement: without it, or with reduced motion, the page is complete. Contact buttons build
+their messages in `lib/whatsapp.ts`. The navbar, footer and contact bar live in `app/layout.tsx`;
+pages must not add their own.
+
 ## More
 
 `HANDOVER.md` · `docs/architecture.md` · `docs/deployment.md`
