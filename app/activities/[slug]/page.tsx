@@ -3,10 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
 import { activities } from "@/lib/activities-data";
+import PageHero from "@/components/page-hero";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -42,35 +40,20 @@ export default async function ActivityDetailPage({ params }: Props) {
 
   return (
     <main>
-      <Navbar />
 
       {/* Hero Banner */}
-      <section className="relative pt-20 lg:pt-24">
-        <div className="relative h-[50vh] lg:h-[60vh]">
-          <Image
-            src={activity.image || "/placeholder.svg"}
-            alt={activity.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent" />
-          <div className="absolute bottom-0 right-0 left-0 p-6 lg:p-12">
-            <div className="mx-auto max-w-5xl">
-              <Link
-                href="/activities"
-                className="inline-flex items-center gap-1 text-primary-foreground/80 hover:text-primary-foreground text-sm mb-4 transition-colors"
-              >
-                <ArrowRight className="w-4 h-4" />
-                {"العودة إلى الفعاليات"}
-              </Link>
-              <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground text-balance">
-                {activity.title}
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={activity.title}
+        image={activity.image || "/placeholder.svg"}
+        imageAlt={activity.title}
+        message={`مرحبًا، أبغى أضيف "${activity.title}" إلى رحلتي في روسيا`}
+        cta="اسألنا عنها على واتساب"
+      >
+        <Link href="/activities" className="inline-flex items-center gap-1 font-bold underline underline-offset-4 py-2">
+          <ArrowRight aria-hidden="true" className="w-4 h-4" />
+          {"العودة إلى الفعاليات"}
+        </Link>
+      </PageHero>
 
       {/* Content */}
       <section className="py-12 lg:py-20 bg-background">
@@ -91,7 +74,7 @@ export default async function ActivityDetailPage({ params }: Props) {
               </p>
 
               {/* CTA */}
-              <div className="bg-secondary rounded-xl p-6 lg:p-8">
+              <div className="bg-secondary rounded-sm p-6 lg:p-8">
                 <h3 className="text-lg font-bold text-secondary-foreground mb-3">
                   {"هل أنت مهتم بهذه الفعالية؟"}
                 </h3>
@@ -114,7 +97,7 @@ export default async function ActivityDetailPage({ params }: Props) {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-28">
-                <div className="bg-card rounded-xl border border-border p-5 mb-6">
+                <div className="bg-card rounded-sm border border-border p-5 mb-6">
                   <h3 className="text-base font-bold text-card-foreground mb-4">
                     {"معلومات سريعة"}
                   </h3>
@@ -200,7 +183,7 @@ export default async function ActivityDetailPage({ params }: Props) {
               <Link
                 key={item.slug}
                 href={`/activities/${item.slug}`}
-                className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                className="group relative aspect-[4/3] rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
               >
                 <Image
                   src={item.image || "/placeholder.svg"}
@@ -208,7 +191,7 @@ export default async function ActivityDetailPage({ params }: Props) {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/60 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-[hsl(var(--ink))]/55 group-hover:bg-black/10 transition-colors duration-300" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <h3 className="text-sm font-bold text-primary-foreground text-center px-3">
                     {item.title}
@@ -220,8 +203,6 @@ export default async function ActivityDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

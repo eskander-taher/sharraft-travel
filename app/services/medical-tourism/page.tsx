@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Star, Phone, Mail, MapPin, CheckCircle, Stethoscope, Eye, Bone } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
+import { Phone, Mail, MapPin, CheckCircle, Stethoscope, Eye, Bone } from "lucide-react";
+import PageHero from "@/components/page-hero";
 
 export const metadata: Metadata = {
   title: "السياحة العلاجية في روسيا | شرف للسفر والسياحة",
@@ -14,37 +12,16 @@ export const metadata: Metadata = {
 export default function MedicalTourismPage() {
   return (
     <main>
-      <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 right-20 text-primary-foreground">
-            <Star className="w-4 h-4" />
-          </div>
-          <div className="absolute top-20 left-32 text-primary-foreground">
-            <Star className="w-3 h-3" />
-          </div>
-          <div className="absolute bottom-16 right-40 text-primary-foreground">
-            <Star className="w-5 h-5" />
-          </div>
-        </div>
-        <div className="relative z-10 text-center px-4">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Stethoscope className="w-8 h-8 text-primary-foreground/60" />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground">
-              {"السياحة العلاجية"}
-            </h1>
-            <Stethoscope className="w-8 h-8 text-primary-foreground/60" />
-          </div>
-          <p className="text-primary-foreground/70 text-lg mb-4">
-            {"علاج متقدم في روسيا مع أفضل الأطباء"}
-          </p>
-          <p className="text-primary-foreground/60 text-base">
-            {"Медицинский туризм в России | Передовое лечение с лучшими врачами"}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="السياحة العلاجية"
+        subtitle="علاج متقدم في روسيا مع أفضل الأطباء"
+        image="/services/Medical_Tourism.jpg"
+        imageAlt="السياحة العلاجية في روسيا"
+        message='مرحبًا، أبغى أستفسر عن خدمة السياحة العلاجية'
+      >
+      </PageHero>
 
       {/* Introduction */}
       <section className="py-16 lg:py-24 bg-background">
@@ -70,7 +47,7 @@ export default function MedicalTourismPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Eye Treatment */}
-            <div className="bg-card rounded-xl p-6 text-center">
+            <div className="bg-card rounded-sm p-6 text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Eye className="w-8 h-8 text-primary" />
               </div>
@@ -82,22 +59,22 @@ export default function MedicalTourismPage() {
               </p>
               <ul className="text-right text-sm text-muted-foreground space-y-2">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>جراحات الليزر الدقيقة</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>أحدث التقنيات الطبية</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>أطباء استشاريون عالميون</span>
                 </li>
               </ul>
             </div>
 
             {/* Cancer Treatment */}
-            <div className="bg-card rounded-xl p-6 text-center">
+            <div className="bg-card rounded-sm p-6 text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Stethoscope className="w-8 h-8 text-primary" />
               </div>
@@ -109,22 +86,22 @@ export default function MedicalTourismPage() {
               </p>
               <ul className="text-right text-sm text-muted-foreground space-y-2">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>بروتوكولات علاج حديثة</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>فرق طبية متخصصة</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>رعاية ما بعد العلاج</span>
                 </li>
               </ul>
             </div>
 
             {/* Bone Treatment */}
-            <div className="bg-card rounded-xl p-6 text-center">
+            <div className="bg-card rounded-sm p-6 text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Bone className="w-8 h-8 text-primary" />
               </div>
@@ -136,15 +113,15 @@ export default function MedicalTourismPage() {
               </p>
               <ul className="text-right text-sm text-muted-foreground space-y-2">
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>جراحات بسيطة وتدخلية</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>إعادة تأهيل متكاملة</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500 shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
                   <span>علاج طبيعي متخصص</span>
                 </li>
               </ul>
@@ -161,7 +138,7 @@ export default function MedicalTourismPage() {
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-1" />
+              <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-card-foreground mb-1">
                   {"حجز المواعيد الطبية"}
@@ -172,7 +149,7 @@ export default function MedicalTourismPage() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-1" />
+              <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-card-foreground mb-1">
                   {"الترجمة الطبية"}
@@ -183,7 +160,7 @@ export default function MedicalTourismPage() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-1" />
+              <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-card-foreground mb-1">
                   {"الإقامة والنقل"}
@@ -194,7 +171,7 @@ export default function MedicalTourismPage() {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-green-500 shrink-0 mt-1" />
+              <CheckCircle className="w-5 h-5 text-primary shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold text-card-foreground mb-1">
                   {"المتابعة المستمرة"}
@@ -293,8 +270,6 @@ export default function MedicalTourismPage() {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

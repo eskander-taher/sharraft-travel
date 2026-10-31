@@ -17,10 +17,8 @@ import {
   FileCheck,
   ChevronDown,
 } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
 import { cities, whatsappLink } from "@/lib/cities-data";
+import { arabicDigits, latitudeOf } from "@/lib/journey";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -67,22 +65,22 @@ export default async function CityPage({ params }: Props) {
 
   return (
     <main>
-      <Navbar />
 
       {/* Hero */}
-      <section className="relative min-h-[80vh] flex items-end overflow-hidden pt-24">
+      <section className="relative min-h-[calc(100svh-var(--bar-h))] flex items-end overflow-hidden pt-24">
         <Image
           src={city.heroImage}
           alt={city.name}
           fill
           className="object-cover"
+          sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/50" />
         <div className="relative z-10 w-full mx-auto max-w-6xl px-4 pb-14 lg:pb-20">
           <Link
             href="/cities"
-            className="inline-flex items-center gap-1 text-white/80 hover:text-white text-sm mb-5 transition-colors"
+            className="inline-flex items-center gap-1 text-white hover:underline text-sm mb-5 transition-colors"
           >
             <ArrowRight className="w-4 h-4" />
             {"جميع الوجهات"}
@@ -90,7 +88,11 @@ export default async function CityPage({ params }: Props) {
           <span className="block w-fit bg-accent text-accent-foreground text-xs font-bold px-3 py-1 rounded-full mb-4">
             {city.badge}
           </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-3">
+          <p aria-hidden="true" className="chapter-lat mb-2">
+            {arabicDigits(latitudeOf(slug) ?? 0)}
+            <span className="chapter-deg">°</span>
+          </p>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-3">
             {city.name}
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8">{city.tagline}</p>
@@ -99,13 +101,13 @@ export default async function CityPage({ params }: Props) {
               href={whatsappLink(quoteMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-center bg-[#25D366] text-white px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+              className="inline-block text-center btn-wa px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
             >
               {"احصل على عرض سعر الآن"}
             </a>
             <a
               href="#packages"
-              className="inline-block text-center border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-primary transition-colors"
+              className="inline-block text-center border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-card hover:text-primary transition-colors"
             >
               {"شاهد البرامج"}
             </a>
@@ -114,13 +116,13 @@ export default async function CityPage({ params }: Props) {
       </section>
 
       {/* Quick facts */}
-      <section className="bg-primary">
+      <section className="bg-[hsl(var(--ink))]">
         <div className="mx-auto max-w-6xl px-4 py-6 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {facts.map((f) => (
             <div key={f.label} className="flex items-start gap-3 text-primary-foreground">
-              <f.icon className="w-6 h-6 shrink-0 mt-0.5 text-yellow-300" />
+              <f.icon className="w-6 h-6 shrink-0 mt-0.5 text-[hsl(var(--amber))]" />
               <div>
-                <p className="text-xs text-primary-foreground/70">{f.label}</p>
+                <p className="text-xs text-white/75">{f.label}</p>
                 <p className="text-sm font-semibold">{f.value}</p>
               </div>
             </div>
@@ -153,7 +155,7 @@ export default async function CityPage({ params }: Props) {
             {city.gallery.map((img, i) => (
               <div
                 key={img.src}
-                className={`relative rounded-xl overflow-hidden shadow-md ${
+                className={`relative rounded-sm overflow-hidden shadow-md ${
                   i === 0 ? "col-span-2 aspect-[16/9]" : "aspect-square"
                 }`}
               >
@@ -183,7 +185,7 @@ export default async function CityPage({ params }: Props) {
             {city.attractions.map((a) => (
               <div
                 key={a.title}
-                className="bg-card rounded-xl border border-border p-6 hover:shadow-lg transition-shadow"
+                className="bg-card rounded-sm border border-border p-6 hover:shadow-lg transition-shadow"
               >
                 <MapPin className="w-6 h-6 text-primary mb-3" />
                 <h3 className="text-lg font-bold text-card-foreground mb-2">{a.title}</h3>
@@ -207,14 +209,14 @@ export default async function CityPage({ params }: Props) {
             {city.packages.map((p) => (
               <div
                 key={p.name}
-                className={`relative flex flex-col rounded-2xl p-6 lg:p-8 border-2 ${
+                className={`relative flex flex-col rounded-sm p-6 lg:p-8 border-2 ${
                   p.popular
                     ? "border-primary bg-primary text-primary-foreground shadow-luxury-lg md:-translate-y-3"
                     : "border-border bg-card text-card-foreground"
                 }`}
               >
                 {p.popular && (
-                  <span className="absolute -top-3 right-6 bg-yellow-300 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
+                  <span className="absolute -top-3 right-6 bg-[hsl(var(--amber))] text-[hsl(var(--ink))] text-xs font-bold px-3 py-1 rounded-full">
                     {"الأكثر حجزًا"}
                   </span>
                 )}
@@ -225,7 +227,7 @@ export default async function CityPage({ params }: Props) {
                 <ul className="flex flex-col gap-3 mb-8 text-sm">
                   {p.includes.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <Check className={`w-4 h-4 shrink-0 mt-0.5 ${p.popular ? "text-yellow-300" : "text-primary"}`} />
+                      <Check className={`w-4 h-4 shrink-0 mt-0.5 ${p.popular ? "text-[hsl(var(--amber))]" : "text-primary"}`} />
                       {item}
                     </li>
                   ))}
@@ -235,7 +237,7 @@ export default async function CityPage({ params }: Props) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`mt-auto text-center px-6 py-3 rounded-full font-bold transition-opacity hover:opacity-90 text-sm ${
-                    p.popular ? "bg-white text-primary" : "bg-primary text-primary-foreground"
+                    p.popular ? "bg-card text-primary" : "bg-primary text-primary-foreground"
                   }`}
                 >
                   {"اطلب السعر عبر واتساب"}
@@ -275,7 +277,7 @@ export default async function CityPage({ params }: Props) {
             {city.faqs.map((faq) => (
               <details
                 key={faq.question}
-                className="group bg-card border border-border rounded-xl p-5 open:shadow-md transition-shadow"
+                className="group bg-card border border-border rounded-sm p-5 open:shadow-md transition-shadow"
               >
                 <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-bold text-card-foreground">
                   {faq.question}
@@ -303,7 +305,7 @@ export default async function CityPage({ params }: Props) {
             href={whatsappLink(quoteMessage)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#25D366] text-white px-10 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+            className="inline-block btn-wa px-10 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
           >
             {"تواصل معنا عبر واتساب"}
           </a>
@@ -321,7 +323,7 @@ export default async function CityPage({ params }: Props) {
               <Link
                 key={c.slug}
                 href={`/cities/${c.slug}`}
-                className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                className="group relative aspect-[4/3] rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow"
               >
                 <Image
                   src={c.heroImage}
@@ -341,8 +343,6 @@ export default async function CityPage({ params }: Props) {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

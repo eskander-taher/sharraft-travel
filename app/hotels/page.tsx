@@ -1,6 +1,7 @@
 import React from "react";
 import { Star, MapPin, Phone, Wifi, Car, Coffee, Dumbbell } from "lucide-react";
 import Link from "next/link";
+import PageHero from "@/components/page-hero";
 
 export const metadata = {
   title: "أفضل فنادق موسكو وسانت بطرسبرغ الفاخرة | شرف للسفر والسياحة",
@@ -167,34 +168,24 @@ const hotels = [
 
 export default function HotelsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-background to-background">
       {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-luxury-1 overlay-luxury">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
-          <div className="text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">أفضل فنادق موسكو وسانت بطرسبرغ</h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              فنادق خمس نجوم قريبة من الساحة الحمراء والكرملين ومعالم سانت بطرسبرغ
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/contact" 
-                className="bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-luxury hover:scale-105"
-              >
-                احجز إقامتك الآن
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="أفضل فنادق موسكو وسانت بطرسبرغ"
+        subtitle="فنادق خمس نجوم قريبة من الساحة الحمراء والكرملين ومعالم سانت بطرسبرغ"
+        image="/services/Hotel_Booking.jpg"
+        imageAlt="بهو فندق فاخر"
+        message='مرحبًا، أبغى أحجز فندق في روسيا'
+      >
+        <Link href="/contact" className="underline underline-offset-4 font-bold py-2">احجز إقامتك الآن</Link>
+      </PageHero>
 
       {/* Comparison Table */}
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-red-800 mb-8 text-center">مقارنة تصنيفات الفنادق</h2>
-          <div className="overflow-x-auto shadow-luxury rounded-xl">
-            <table className="w-full bg-white">
+          <h2 className="text-3xl font-bold text-primary mb-8 text-center">مقارنة تصنيفات الفنادق</h2>
+          <div tabIndex={0} role="region" aria-label="جدول الفنادق" className="overflow-x-auto shadow-luxury rounded-sm">
+            <table className="w-full bg-card">
               <thead className="bg-gradient-luxury-2 text-white">
                 <tr>
                   <th className="px-6 py-4 text-right">اسم الفندق</th>
@@ -205,8 +196,8 @@ export default function HotelsPage() {
               </thead>
               <tbody>
                 {hotels.map((hotel, index) => (
-                  <tr key={index} className="border-b border-gray-200 hover:bg-red-50 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-gray-800">{hotel.name}</td>
+                  <tr key={index} className="border-b border-border hover:bg-secondary transition-colors">
+                    <td className="px-6 py-4 font-semibold text-foreground">{hotel.name}</td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-4 h-4 text-yellow-500 fill-current" />
@@ -236,10 +227,10 @@ export default function HotelsPage() {
       {/* Hotels Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-red-800 mb-12 text-center">الفنادق المميزة</h2>
+          <h2 className="text-4xl font-bold text-primary mb-12 text-center">الفنادق المميزة</h2>
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {hotels.map((hotel, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-luxury-lg overflow-hidden border-luxury hover:shadow-luxury-xl transition-all duration-300">
+              <div key={index} className="bg-card rounded-sm shadow-luxury-lg overflow-hidden border-luxury hover:shadow-luxury-xl transition-all duration-300">
                 {/* Hotel Image Placeholder */}
                 <div className="h-48 bg-gradient-luxury-3 relative">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -250,49 +241,49 @@ export default function HotelsPage() {
                       <p className="text-sm opacity-90">صورة الفندق</p>
                     </div>
                   </div>
-                  <div className="absolute top-4 left-4 bg-white text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute top-4 left-4 bg-card text-primary px-3 py-1 rounded-full text-sm font-semibold">
                     5 نجوم
                   </div>
                 </div>
 
                 {/* Hotel Content */}
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-red-800 mb-3">{hotel.name}</h3>
+                  <h3 className="text-2xl font-bold text-primary mb-3">{hotel.name}</h3>
                   
                   {/* Ratings */}
                   <div className="flex flex-wrap gap-3 mb-4">
                     <div className="flex items-center gap-1 text-sm">
                       <Star className="w-4 h-4 text-yellow-500 fill-current" />
                       <span>{hotel.rating.google}</span>
-                      <span className="text-gray-500 text-xs">Google</span>
+                      <span className="text-muted-foreground text-xs">Google</span>
                     </div>
                     <div className="flex items-center gap-1 text-sm">
                       <Star className="w-4 h-4 text-yellow-500 fill-current" />
                       <span>{hotel.rating.tripAdvisor}</span>
-                      <span className="text-gray-500 text-xs">TripAdvisor</span>
+                      <span className="text-muted-foreground text-xs">TripAdvisor</span>
                     </div>
                     <div className="flex items-center gap-1 text-sm">
                       <Star className="w-4 h-4 text-yellow-500 fill-current" />
                       <span>{hotel.rating.booking}</span>
-                      <span className="text-gray-500 text-xs">Booking</span>
+                      <span className="text-muted-foreground text-xs">Booking</span>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 mb-4">{hotel.description}</p>
+                  <p className="text-muted-foreground mb-4">{hotel.description}</p>
 
                   {/* Location */}
-                  <div className="flex items-center gap-2 text-gray-500 mb-4">
+                  <div className="flex items-center gap-2 text-muted-foreground mb-4">
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">{hotel.location}</span>
                   </div>
 
                   {/* Features */}
                   <div className="mb-6">
-                    <h4 className="font-semibold text-gray-800 mb-2">المرافق:</h4>
+                    <h4 className="font-semibold text-foreground mb-2">المرافق:</h4>
                     <div className="grid grid-cols-2 gap-2">
                       {hotel.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-1 text-sm text-gray-600">
-                          <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                        <div key={idx} className="flex items-center gap-1 text-sm text-muted-foreground">
+                          <div className="w-2 h-2 bg-primary rounded-full"></div>
                           {feature}
                         </div>
                       ))}
@@ -302,7 +293,7 @@ export default function HotelsPage() {
                   {/* CTA */}
                   <Link 
                     href="/contact" 
-                    className="w-full bg-gradient-luxury-2 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-all duration-300 text-center block"
+                    className="w-full bg-gradient-luxury-2 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300 text-center block"
                   >
                     اطلب الحجز
                   </Link>
@@ -314,30 +305,30 @@ export default function HotelsPage() {
       </section>
 
       {/* Why Choose Section */}
-      <section className="py-20 bg-gradient-to-r from-red-50 to-white">
+      <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-red-800 mb-12 text-center">لماذا تختار فنادقنا؟</h2>
+          <h2 className="text-4xl font-bold text-primary mb-12 text-center">لماذا تختار فنادقنا؟</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-luxury-2 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-red-800 mb-3">مواقع استراتيجية</h3>
-              <p className="text-gray-600">جميع فنادقنا تقع في قلب موسكو بالقرب من المعالم السياحية الرئيسية</p>
+              <h3 className="text-xl font-semibold text-primary mb-3">مواقع استراتيجية</h3>
+              <p className="text-muted-foreground">جميع فنادقنا تقع في قلب موسكو بالقرب من المعالم السياحية الرئيسية</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-luxury-2 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-red-800 mb-3">خدمات فاخرة</h3>
-              <p className="text-gray-600">خدمات خمس نجوم ومرافق عالمية المستوى تلبي جميع احتياجاتك</p>
+              <h3 className="text-xl font-semibold text-primary mb-3">خدمات فاخرة</h3>
+              <p className="text-muted-foreground">خدمات خمس نجوم ومرافق عالمية المستوى تلبي جميع احتياجاتك</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-luxury-2 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Phone className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-semibold text-red-800 mb-3">دعم على مدار الساعة</h3>
-              <p className="text-gray-600">فريق خدمة عملاء متخصص لمساعدتك على مدار 24 ساعة</p>
+              <h3 className="text-xl font-semibold text-primary mb-3">دعم على مدار الساعة</h3>
+              <p className="text-muted-foreground">فريق خدمة عملاء متخصص لمساعدتك على مدار 24 ساعة</p>
             </div>
           </div>
         </div>
@@ -353,7 +344,7 @@ export default function HotelsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="bg-white text-red-700 px-8 py-3 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-luxury hover:scale-105"
+              className="bg-card text-primary px-8 py-3 rounded-lg font-semibold hover:bg-secondary transition-all duration-300 shadow-luxury hover:scale-105"
             >
               استشارة مجانية
             </Link>

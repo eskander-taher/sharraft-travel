@@ -20,9 +20,6 @@ import {
   ChevronDown,
   Mail,
 } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
 import B2BInquiryForm from "@/components/b2b-inquiry-form";
 import { cities, whatsappLink } from "@/lib/cities-data";
 
@@ -84,7 +81,6 @@ const faqs = [
 export default function B2BPage() {
   return (
     <main>
-      <Navbar />
 
       {/* Hero */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden pt-24">
@@ -111,7 +107,7 @@ export default function B2BPage() {
               href={whatsappLink("مرحبًا، أنا من وكالة سفر وأرغب بمعرفة أسعار الشركاء")}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block text-center border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-white hover:text-primary transition-colors"
+              className="inline-block text-center border-2 border-white text-white px-8 py-3 rounded-full text-lg font-bold hover:bg-card hover:text-primary transition-colors"
             >
               {"اطلب أسعار الشركاء"}
             </a>
@@ -128,7 +124,7 @@ export default function B2BPage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {audiences.map((a) => (
-              <div key={a.title} className="bg-card rounded-xl border border-border p-6 text-center hover:shadow-lg transition-shadow">
+              <div key={a.title} className="bg-card rounded-sm border border-border p-6 text-center hover:shadow-lg transition-shadow">
                 <span className="mx-auto mb-4 w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                   <a.icon className="w-7 h-7" />
                 </span>
@@ -147,7 +143,7 @@ export default function B2BPage() {
           <p className="text-center text-muted-foreground mb-12">{"كل ما تحتاجه رحلة عملائكم في روسيا من مزود واحد"}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s) => (
-              <div key={s.title} className="flex gap-4 bg-card rounded-xl border border-border p-6 hover:shadow-lg transition-shadow">
+              <div key={s.title} className="flex gap-4 bg-card rounded-sm border border-border p-6 hover:shadow-lg transition-shadow">
                 <s.icon className="w-8 h-8 text-primary shrink-0" />
                 <div>
                   <h3 className="text-lg font-bold text-card-foreground mb-2">{s.title}</h3>
@@ -183,7 +179,7 @@ export default function B2BPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-12">{"كيف تبدأ الشراكة؟"}</h2>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
-              <li key={step.title} className="relative bg-card rounded-xl border border-border p-6 pt-10">
+              <li key={step.title} className="relative bg-card rounded-sm border border-border p-6 pt-10">
                 <span className="absolute -top-5 right-6 w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center shadow">
                   {i + 1}
                 </span>
@@ -208,7 +204,7 @@ export default function B2BPage() {
               <Link
                 key={c.slug}
                 href={`/cities/${c.slug}`}
-                className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+                className="group relative aspect-[4/3] rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow"
               >
                 <Image
                   src={c.heroImage}
@@ -235,13 +231,13 @@ export default function B2BPage() {
             </p>
             <a
               href="mailto:booking@sharraftravels.com?subject=B2B%20Partnership"
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:underline"
             >
               <Mail className="w-5 h-5" />
               <span dir="ltr">booking@sharraftravels.com</span>
             </a>
           </div>
-          <div className="lg:col-span-3 bg-card rounded-2xl border border-border p-6 lg:p-8 shadow-sm">
+          <div className="lg:col-span-3 bg-card rounded-sm border border-border p-6 lg:p-8 shadow-sm">
             <B2BInquiryForm />
           </div>
         </div>
@@ -253,7 +249,7 @@ export default function B2BPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">{"أسئلة الشركاء"}</h2>
           <div className="flex flex-col gap-3">
             {faqs.map((faq) => (
-              <details key={faq.question} className="group bg-card border border-border rounded-xl p-5 open:shadow-md transition-shadow">
+              <details key={faq.question} className="group bg-card border border-border rounded-sm p-5 open:shadow-md transition-shadow">
                 <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-bold text-card-foreground">
                   {faq.question}
                   <ChevronDown className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
@@ -265,8 +261,6 @@ export default function B2BPage() {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

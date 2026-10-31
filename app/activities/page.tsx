@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Star } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
 import { activities } from "@/lib/activities-data";
+import PageHero from "@/components/page-hero";
 
 export const metadata: Metadata = {
   title: "الفعاليات | شرف للسفر والسياحة",
@@ -15,36 +12,16 @@ export const metadata: Metadata = {
 export default function ActivitiesPage() {
   return (
     <main>
-      <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 right-20 text-primary-foreground">
-            <Star className="w-4 h-4" />
-          </div>
-          <div className="absolute top-20 left-32 text-primary-foreground">
-            <Star className="w-3 h-3" />
-          </div>
-          <div className="absolute bottom-16 right-40 text-primary-foreground">
-            <Star className="w-5 h-5" />
-          </div>
-          <div className="absolute top-16 left-1/4 text-primary-foreground">
-            <Star className="w-2 h-2" />
-          </div>
-          <div className="absolute bottom-20 left-20 text-primary-foreground">
-            <Star className="w-4 h-4" />
-          </div>
-        </div>
-        <div className="relative z-10 text-center px-4">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Star className="w-5 h-5 text-primary-foreground/60" />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground">{"الفعاليات"}</h1>
-            <Star className="w-5 h-5 text-primary-foreground/60" />
-          </div>
-          <p className="text-primary-foreground/70 text-lg">{"اكتشف أفضل الأنشطة السياحية في روسيا"}</p>
-        </div>
-      </section>
+      <PageHero
+        title="الفعاليات"
+        subtitle="اكتشف أفضل الأنشطة السياحية في روسيا"
+        image="/activities/Husky_Sled.jpg"
+        imageAlt="رحلة بزلاجة الهاسكي في الثلج"
+        message='مرحبًا، أبغى أضيف أنشطة إلى رحلتي في روسيا'
+      >
+      </PageHero>
 
       {/* Activities Grid */}
       <section className="py-16 lg:py-24 bg-background">
@@ -56,7 +33,7 @@ export default function ActivitiesPage() {
                 <Link
                   key={activity.slug}
                   href={`/activities/${activity.slug}`}
-                  className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="group relative aspect-[4/3] rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   <Image
                     src={activity.image}
@@ -78,7 +55,7 @@ export default function ActivitiesPage() {
           {/* Show message if no activities with images */}
           {activities.filter((activity) => activity.image && !activity.image.includes("placeholder")).length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">
+              <p className="text-muted-foreground text-lg">
                 لا توجد صور متاحة للأنشطة حالياً. جاري إضافتها قريباً.
               </p>
             </div>
@@ -89,7 +66,7 @@ export default function ActivitiesPage() {
       {/* Bottom CTA */}
       <section className="relative py-20 lg:py-28 overflow-hidden">
         <Image src="/places/saintpetersburg.jpg" alt="موسكو" fill className="object-cover" />
-        <div className="absolute inset-0 bg-primary/75" />
+        <div className="absolute inset-0 bg-[hsl(var(--ink))]/55" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
           <p className="text-primary-foreground/85 leading-relaxed text-base md:text-lg mb-8">
             {"اكتشفوا أفضل الأنشطة والفعاليات السياحية في موسكو وروسيا مع شركة شرف للسفر والسياحة. نقدم لكم تجارب فريدة ومميزة تشمل الرحلات البحرية، جولات الهليكوبتر، ركوب الخيل، التزلج على الجليد، والعديد من الأنشطة الشتوية والصيفية المثيرة. فريقنا المتخصص يضمن لكم تجربة آمنة وممتعة لا تُنسى."}
@@ -105,8 +82,6 @@ export default function ActivitiesPage() {
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }

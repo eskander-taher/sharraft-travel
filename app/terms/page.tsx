@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TermsOfService() {
 	return (
-		<div className="min-h-screen bg-background py-16">
+		<div className="min-h-screen bg-background pt-28 pb-16 lg:pt-36">
 			<div className="mx-auto max-w-4xl px-4">
 				<h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
 					شروط الخدمة

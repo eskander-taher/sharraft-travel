@@ -82,7 +82,7 @@ export default function B2BInquiryForm() {
       />
       <button
         type="submit"
-        className="sm:col-span-2 bg-[#25D366] text-white px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+        className="sm:col-span-2 btn-wa px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
       >
         {"أرسل الطلب عبر واتساب"}
       </button>

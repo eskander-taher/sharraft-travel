@@ -2,9 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CalendarDays, Clock, Plane, Check, ArrowLeft } from "lucide-react";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
-import WhatsAppButton from "@/components/whatsapp-button";
 import { cities, whatsappLink } from "@/lib/cities-data";
 
 export const metadata: Metadata = {
@@ -16,7 +13,6 @@ export const metadata: Metadata = {
 export default function CitiesPage() {
   return (
     <main>
-      <Navbar />
 
       {/* Hero */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
@@ -39,7 +35,7 @@ export default function CitiesPage() {
             href={whatsappLink("مرحبًا، أبغى أخطط رحلة إلى روسيا. ممكن تساعدوني أختار المدن المناسبة؟")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+            className="inline-block btn-wa px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
           >
             {"خطط رحلتك مجانًا عبر واتساب"}
           </a>
@@ -52,7 +48,7 @@ export default function CitiesPage() {
           {cities.map((city, i) => (
             <article
               key={city.slug}
-              className="grid grid-cols-1 lg:grid-cols-2 bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-shadow duration-300"
+              className="grid grid-cols-1 lg:grid-cols-2 bg-card rounded-sm overflow-hidden border border-border shadow-sm hover:shadow-xl transition-shadow duration-300"
             >
               <Link
                 href={`/cities/${city.slug}`}
@@ -137,15 +133,13 @@ export default function CitiesPage() {
             href={whatsappLink("مرحبًا، أبغى برنامج يجمع أكثر من مدينة في روسيا")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#25D366] text-white px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
+            className="inline-block btn-wa px-8 py-3 rounded-full text-lg font-bold hover:opacity-90 transition-opacity shadow-lg"
           >
             {"صمم برنامجك معنا"}
           </a>
         </div>
       </section>
 
-      <Footer />
-      <WhatsAppButton />
     </main>
   );
 }
