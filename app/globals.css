@@ -230,6 +230,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Phones get a square crop with the cathedral near its left edge. */
+    object-position: 4% 50%;
+  }
+  @media (min-width: 768px) {
+    .hero-media {
+      object-position: 56% 50%;
+    }
   }
   /* Out of the grid flow; its <source> would otherwise take a row of its own. */
   .hero-frame picture {
@@ -272,16 +279,16 @@
   }
 
   @media (min-width: 1024px) {
-    /* Wider than the screen and pushed left, so the cathedral stands inside the arch. */
-    .hero-frame picture {
-      overflow: hidden;
-    }
+    /* Slid left so the cathedral stands in the arch. The wall hides the gap this leaves on
+       the right; the media returns to centre before the opening arch can reach that gap. */
     .hero-media {
-      inset: 0 auto 0 -35%;
-      width: 145%;
       object-position: 50% 30%;
+      transform: translateX(calc(-1 * var(--hero-shift)));
     }
     .hero-frame {
+      /* Cathedral centre (54% of the frame) minus arch centre, from the columns below. */
+      --hero-pad: max(2rem, calc((100vw - 80rem) / 2 + 1rem));
+      --hero-shift: calc(54vw - var(--hero-pad) - (100vw - 2 * var(--hero-pad) - 3rem) * 0.225);
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
       grid-template-rows: minmax(0, 1fr) auto;
       column-gap: 3rem;
@@ -523,6 +530,11 @@
     transform: scale(9);
   }
 }
+@keyframes hero-media-centre {
+  to {
+    transform: none;
+  }
+}
 @keyframes hero-copy-leave {
   to {
     opacity: 0;
@@ -603,6 +615,13 @@
       animation-timeline: --hero;
       animation-range: contain 0% contain 62%;
       will-change: transform;
+    }
+    @media (min-width: 1024px) {
+      .hero-media {
+        animation: hero-media-centre linear both;
+        animation-timeline: --hero;
+        animation-range: contain 0% contain 22%;
+      }
     }
     .hero-copy,
     .hero-actions {
