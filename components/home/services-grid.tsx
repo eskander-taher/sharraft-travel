@@ -1,54 +1,45 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { arabicDigits } from "@/lib/journey";
 
-const services = [
-  { title: "الاستقبال والتوديع", image: "/services/Reception_&_Send-off.jpg", href: "/services" },
-  { title: "الفعاليات", image: "/services/Events_&_Activities.jpg", href: "/activities" },
-  { title: "حجوزات الفنادق", image: "/services/Hotel_Booking.jpg", href: "/services" },
-  { title: "جولات سياحية", image: "/services/Tours.jpg", href: "/services" },
+/** What Sharraf arranges, in the order a traveller needs it, set as a departures board. */
+const steps = [
+  { title: "دعوة وتأشيرة السفر", note: "من الدعوة إلى الفيزا السياحية", href: "/services/visa-tourism" },
+  { title: "حجز الطيران", note: "نرتب رحلتك الجوية", href: "/services/flight" },
+  { title: "حجوزات الفنادق", note: "إقامة تناسب برنامجك", href: "/services/hotel" },
+  { title: "الاستقبال والتوديع", note: "من المطار إلى الفندق وبالعكس", href: "/services/reception" },
+  { title: "جولات سياحية", note: "برامج في أجمل المدن الروسية", href: "/services/tours" },
+  { title: "الفعاليات", note: "أنشطة تختارها لرحلتك", href: "/activities" },
 ];
 
 export default function ServicesGrid() {
   return (
-    <section className="py-16 lg:py-24 bg-background">
-      <div className="mx-auto max-w-7xl px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
-          {"بعض الخدمات التي نقدمها"}
-        </h2>
-        <p className="text-center text-muted-foreground mb-12">
-          {"خدمات متكاملة لرحلة مريحة إلى روسيا"}
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <Link
-              key={service.title}
-              href={service.href}
-              className="group relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg"
-            >
-              <Image
-                src={service.image}
-                alt={service.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-primary/50 group-hover:bg-primary/60 transition-colors duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="text-xl font-bold text-primary-foreground text-center px-4">
-                  {service.title}
-                </h3>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Link
-            href="/services"
-            className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition-colors duration-200 shadow-lg"
-          >
+    <section className="bg-[hsl(var(--ink))] text-white relative z-10 py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div className="rise">
+          <p className="text-sm font-bold text-[hsl(var(--amber))] mb-3">{"قبل الإقلاع"}</p>
+          <h2 className="text-4xl lg:text-6xl mb-5 text-balance">{"أنت تختار الوجهة، والباقي علينا"}</h2>
+          <p className="text-white/85 leading-loose mb-7 max-w-md">{"خدمات متكاملة لرحلة مريحة إلى روسيا، خطوة بعد خطوة."}</p>
+          <Link href="/services" className="inline-block border border-white/50 rounded-full px-7 py-3 font-bold hover:bg-white hover:text-[hsl(var(--ink))] transition-colors">
             {"اكتشف خدماتنا"}
           </Link>
         </div>
+        <ol className="border-t border-white/15">
+          {steps.map((step, i) => (
+            <li key={step.href}>
+              <Link href={step.href} className="board-row group">
+                <span aria-hidden="true" className="font-display text-3xl text-[hsl(var(--amber))]">
+                  {arabicDigits(i + 1)}
+                </span>
+                <span>
+                  <span className="block text-lg lg:text-xl font-bold">{step.title}</span>
+                  <span className="block text-sm text-white/75">{step.note}</span>
+                </span>
+                <ArrowLeft aria-hidden="true" className="w-5 h-5 text-white/70 transition-transform group-hover:-translate-x-1" />
+              </Link>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
